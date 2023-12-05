@@ -1,0 +1,25 @@
+<div
+  class="notifications"
+  [class.notifications--expanded]="expanded"
+  (click)="expanded = !expanded"
+>
+  @for (notification of notifications; track $index) {
+    <div
+      class="notifications__item"
+      [style.--index]="$index"
+      [style.--number-of-items]="notifications.length"
+      [class.notifications__item--collapsed-visible]="
+        getCollapsedItemBehaviour($index) === CollapsedItemBehaviour.Visible
+      "
+      [class.notifications__item--collapsed-half-visible]="
+        getCollapsedItemBehaviour($index) === CollapsedItemBehaviour.HalfVisible
+      "
+      [class.notifications__item--collapsed-hidden]="
+        getCollapsedItemBehaviour($index) === CollapsedItemBehaviour.Hidden
+      "
+    >
+      <div class="notifications__item-title">{{ notification.title }}</div>
+      <div class="notifications__item-body">{{ notification.body }}</div>
+    </div>
+  }
+</div>
